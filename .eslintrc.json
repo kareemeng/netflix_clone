@@ -1,0 +1,51 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    //*this is a special rule that requires type checking (it's more strict) Bit of a pain to set up, but it's worth it
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier"
+  ],
+  "rules": {
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0
+  },
+  "ignorePatterns": ["dist", ".eslintrc.cjs","vite.config.ts"],
+  "plugins": ["react", "import", "jsx-a11y", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser", //* allows eslint to understand typescript
+  "parserOptions": {
+    "project": "./tsconfig.json", // the location of the tsconfig.json file so eslint can understand the project's structure
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/parser": {
+      "@typescript-eslint/parser": [".ts", ".tsx"] //* this is a custom parser for typescript
+    },
+    "import/resolver": {
+      // "node": {//remove this if you're using typescript
+      //   "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      // }
+      "typescript": {
+        //* this is a custom resolver for typescript
+        "alwaysTryTypes": true
+      }
+    }
+  }
+}
